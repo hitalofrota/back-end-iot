@@ -13,7 +13,7 @@ app.use(cors({
 app.use(express.json());
 
 const PORT = process.env.PORT || 3000;
-const HOST = process.env.NODE_ENV === 'production' ? '0.0.0.0' : 'localhost';
+const HOST = '0.0.0.0';
 
 // Array para armazenar histórico de dados (opcional)
 let historicoDados = [];
@@ -143,9 +143,10 @@ app.use((err, req, res, next) => {
 
 // Iniciar servidor
 app.listen(PORT, HOST, () => {
+    const timestamp = new Date().toISOString();
     console.log(`\n🚀 Servidor IoT API rodando em http://${HOST}:${PORT}`);
-    console.log(`📅 Iniciado em: ${new Date().toISOString()}`);
-    console.log(`🌐 Ambiente: ${process.env.NODE_ENV || 'development'}`);
+    console.log(`📅 Iniciado em: ${timestamp}`);
+    console.log(`🌐 Ambiente: ${process.env.NODE_ENV || 'production'}`);
     console.log(`🔧 Porta: ${PORT}`);
     console.log(`📍 Host: ${HOST}`);
     console.log('====================================\n');
